@@ -1,0 +1,218 @@
+/*Variables*/
+$Center:center;
+$Relative:relative;
+$Absolute:absolute;
+$None:none;
+$Auto:auto;
+$Pointer:pointer;
+
+.BoxCont{
+	display: grid;
+	grid-auto-columns: 1fr;
+
+	//Start Contdark
+	.contdark{
+		display: flex;
+		justify-content: $Center;
+		align-items: $Center;
+		flex-wrap: wrap;
+		min-width: 100%;
+
+		.contcard{
+			width: calc(100% / 3);
+
+			@media (max-width: 1200px){
+				&{
+					width: calc((100% / 2) - 90px);
+				}
+			}
+
+			@media (max-width: 991px){
+				&{
+					width: calc(94%);
+				}
+			}
+
+			.card{
+				position: $Relative;
+				width:  300px;
+				height: 440px;
+				box-shadow: inset 5px 5px 5px rgba(0,0,0,.2),
+							inset -5px -5px 15px rgba(255,255,255,.1),
+							5px 5px 15px rgba(0,0,0,.3),
+							-5px -5px 15px rgba(255,255,255,.1);
+				border-radius: 15px;
+				margin: 30px $Auto;
+
+				&::before{
+					content: '';
+					position: $Absolute;
+					top: 0;
+					left: 0;
+					width: 50%;
+					height: 100%;
+					background-color: rgba(255,255,255,.1);
+				}
+
+				.box{
+					position: $Absolute;
+					top: 20px;
+					left: 20px;
+					bottom: 20px;
+					right: 20px;
+					background-color: #2a2b2f;
+					border: 2px solid #1e1f23;
+					border-radius: 15px;
+					box-shadow: 0 20px 50px rgba(0,0,0,.5);
+					transition: 0.5s;
+					overflow: hidden;
+
+					&::before{
+						content: '';
+						position: $Absolute;
+						top: 0;
+						left: 0;
+						width: 50%;
+						height: 100%;
+						background-color: rgba(255,255,255,.05);
+						pointer-events: $None;
+					}
+
+					.content{
+					    text-align: $Center;
+					    position: $Absolute;
+					    bottom: 0px;
+					    width: 100%;
+					    height: 100%;
+
+						img{
+						    width: 100%;
+						    height: 80%;
+						    // padding: 18px;
+						}
+
+						.price{
+							position: $Absolute;
+						    bottom: 15px;
+						    right: 0;
+						    text-align: center;
+						    font-size: 1.5em;
+						    color: #607d8b;
+						    font-weight: bold;
+						    width: 100%;
+							.priceNum{
+								font-weight: normal;
+								color: #55d4c8;
+								display: block;
+							}
+						}
+
+					}
+				}
+
+			}
+		}
+	}
+	//End Contdark
+
+	//Start Wrap
+	.wrap{
+	    height: 40%;
+	    display: flex;
+        width: 100%;
+	    align-items: $Center;
+	    justify-content: space-around;
+	    flex-wrap: wrap;
+
+		.Clear{
+			min-width: 300px;
+			min-height: 60px;
+			font-family: 'Nunito', sans-serif;
+			font-size: 22px;
+			text-transform: uppercase;
+			letter-spacing: 1.3px;
+			font-weight: 700;
+			border: $None;
+			border-radius: 1000px;
+			transition: all 0.3s ease-in-out 0s;
+			cursor: $Pointer;
+			outline: $None;
+			position: $Relative;
+			padding: 10px;
+			margin: 10px;
+
+			&::before {
+				content: '';
+				border-radius: 1000px;
+				min-width: calc(300px + 12px);
+				min-height: calc(60px + 12px);
+				position: $Absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				opacity: 0;
+				transition: all .3s ease-in-out 0s;
+			}
+
+			&:hover,&:focus {
+			  color: #313133;
+			  transform: translateY(-6px);
+			}
+			&:hover{
+				&::before{
+					opacity: 1;
+				}
+
+				&::after{
+					animation: $None;
+					display: $None;
+				}
+			}
+
+			&::after {
+				content: '';
+				width: 30px;
+				height: 30px;
+				border-radius: 100%;
+				position: $Absolute;
+				z-index: -1;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				animation: ring 1.5s infinite;
+				z-index: 1;
+			}
+		}
+
+		.Clear{
+			color:#fff;
+			background: linear-gradient(90deg, #e91e63 0%, #ff5722 100%);
+			box-shadow: 12px 12px 24px #f44336;
+
+			&::before {
+				border: 6px solid #f44336;
+				box-shadow: 12px 12px 60px #f44336;
+			}
+
+			&::after {
+				border: 6px solid #ffc107;
+			}
+		}
+
+	}
+	//End Wrap
+
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+  }
+}
